@@ -7,12 +7,18 @@ import phone.screen.SimpleAppScreen;
 public class SimpleApp implements PhoneApp {
     private String name;
     private String version;
-    private String installed = null;
+    private String installed;
     private Phone phone;
 
     SimpleApp(String name, String version) {
         this.name = name;
         this.version = version;
+    }
+
+    SimpleApp(String name, String version, String installed) {
+        this.name = name;
+        this.version = version;
+        this.installed = installed;
     }
 
     @Override
@@ -66,4 +72,8 @@ public class SimpleApp implements PhoneApp {
         return new SimpleAppScreen(this);
     }
 
+    @Override
+    public String toString() {
+        return name + "=" + version;
+    }
 }

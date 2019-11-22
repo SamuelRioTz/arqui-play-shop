@@ -34,12 +34,12 @@ class PlayStoreServerClient {
     private void messageParser(String input) {
         String[] message = input.split("->");
         switch (message[0]) {
-        case "loadData":
-            loadData(message[1]);
-            break;
-        case "updateVersion":
-            updateVersion(message[1]);
-            break;
+            case "loadData":
+                loadData(message[1]);
+                break;
+            case "updateVersion":
+                updateVersion(message[1]);
+                break;
         }
     }
 
@@ -49,7 +49,8 @@ class PlayStoreServerClient {
         apps.put("Play Store", playStoreApp);
         for (String app : appList) {
             String[] appDetail = app.split("=");
-            apps.put(appDetail[0], new SimpleApp(appDetail[0], appDetail[1]));
+            String appInstalledVersion = playStoreApp.database.getVersion(appDetail[0]);
+            apps.put(appDetail[0], new SimpleApp(appDetail[0], appDetail[1], appInstalledVersion));
         }
         playStoreApp.loadApps(apps);
     }

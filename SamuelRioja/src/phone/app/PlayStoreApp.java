@@ -12,6 +12,7 @@ public class PlayStoreApp implements PhoneApp {
     private Phone phone;
     private String version = "v1.0.0";
     private Map<String, PhoneApp> apps = new HashMap<>();
+    public Database database = new Database();
 
     public PlayStoreApp() {
         name = "Play Store";
@@ -62,15 +63,18 @@ public class PlayStoreApp implements PhoneApp {
     }
 
     public void installApp(PhoneApp phoneApp) {
+        database.installApp(phoneApp);
         phoneApp.install();
     }
 
     public void uninstallApp(PhoneApp phoneApp) {
+        database.unInstallApp(phoneApp);
         phoneApp.uninstall();
     }
 
     @Override
     public void close() {
+        database.saveApps();
         phone.back();
     }
 
