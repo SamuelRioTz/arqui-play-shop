@@ -1,4 +1,4 @@
-package phone.screen;
+package phoneapp.screen;
 
 import java.awt.BorderLayout;
 import java.awt.Button;
@@ -12,14 +12,14 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import phone.app.PhoneApp;
-import phone.app.PlayStoreApp;
+import phoneapp.data.PhoneApp;
+import phoneapp.data.PlayShopDataManager;
 
 public class PlayStoreAppScreen implements ScreenContainer {
-    private PlayStoreApp playStoreApp;
+    private PlayShopDataManager playShopDataManager;
 
-    public PlayStoreAppScreen(PlayStoreApp playStoreApp) {
-        this.playStoreApp = playStoreApp;
+    public PlayStoreAppScreen(PlayShopDataManager playShopDataManager) {
+        this.playShopDataManager = playShopDataManager;
     }
 
     private Panel getAppPanel(PhoneApp phoneApp) {
@@ -31,19 +31,19 @@ public class PlayStoreAppScreen implements ScreenContainer {
         button.setLabel(phoneApp.isInstalled() ? "Desinstalar" : "Instalar");
         button.addActionListener(e -> {
             if (!phoneApp.isInstalled()) {
-                playStoreApp.installApp(phoneApp);
+                playShopDataManager.installApp(phoneApp);
                 button.setLabel("Desinstalar");
             } else {
-                playStoreApp.uninstallApp(phoneApp);
+                playShopDataManager.uninstallApp(phoneApp);
                 button.setLabel("Instalar");
             }
-            playStoreApp.refresh();
+            playShopDataManager.refresh();
         });
         if (phoneApp.isInstalled() && phoneApp.isNewVersion()) {
             Button updateButton = new Button("Actualizar");
             updateButton.addActionListener(e -> {
                 phoneApp.install();
-                playStoreApp.refresh();
+                playShopDataManager.refresh();
             });
             panel.add(updateButton, BorderLayout.WEST);
         }
@@ -56,8 +56,8 @@ public class PlayStoreAppScreen implements ScreenContainer {
     public Panel getBody(Panel panel) {
         panel.setLayout(new BorderLayout());
         panel.setLayout(new GridLayout(10, 1));
-        for (PhoneApp app : playStoreApp.getApps().values()) {
-            if (!(app instanceof PlayStoreApp))
+        for (PhoneApp app : playShopDataManager.getApps().values()) {
+            if (!(app instanceof PlayShopDataManager))
                 panel.add(getAppPanel(app));
         }
         return panel;
@@ -73,7 +73,7 @@ public class PlayStoreAppScreen implements ScreenContainer {
         JMenuBar jMenuBar = new JMenuBar();
         JMenu fileMenu = new JMenu("File");
         JMenuItem quitMenuItem = new JMenuItem("Quit");
-        quitMenuItem.addActionListener(e -> playStoreApp.close());
+        quitMenuItem.addActionListener(e -> playShopDataManager.close());
         fileMenu.add(quitMenuItem);
         jMenuBar.add(fileMenu);
         return jMenuBar;

@@ -1,27 +1,24 @@
-package phone.screen;
+package phoneapp.screen;
 
-import java.awt.Dimension;
-import java.awt.Panel;
+import phoneapp.data.PlayShopDataManager;
+
+import javax.swing.*;
+import java.awt.*;
 import java.util.Stack;
 
-import javax.swing.JFrame;
-
-import phone.app.PlayStoreApp;
-
-public class Phone {
+public class PlayShopScreenContainer {
     private JFrame window = new JFrame();
     private Stack<ScreenContainer> history = new Stack<>();
 
-    public Phone(PlayStoreApp playStoreApp) {
+    public PlayShopScreenContainer(PlayShopDataManager playShopDataManager) {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
-
         window.setLocation(500, 0);
-        setScreen(new HomeScreen(playStoreApp, this));
+        setScreen(new HomeScreen(playShopDataManager));
         window.setVisible(true);
     }
 
-    void setScreen(ScreenContainer view) {
+    public void setScreen(ScreenContainer view) {
         setCurrentView(view);
         history.push(view);
     }

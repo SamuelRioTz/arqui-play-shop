@@ -1,23 +1,30 @@
-package phone.server;
+package manager.screen;
+
+
+import manager.data.DataManager;
 
 import java.awt.Dimension;
 import java.awt.Panel;
+import java.util.Stack;
 
 import javax.swing.JFrame;
 
 
-public class PlayStoreServer {
+public class PlayShopScreenContainer {
 
     private JFrame window = new JFrame();
 
-    public PlayStoreServer() {
+    private Stack<ScreenContainer> history = new Stack<>();
+
+    public PlayShopScreenContainer(DataManager dataManager) {
         window.setResizable(false);
-        setScreen(new PlayStoreServerScreen());
+        setScreen(new HomeScreen(dataManager));
         window.setVisible(true);
     }
 
     private void setScreen(ScreenContainer view) {
         setCurrentView(view);
+        history.push(view);
     }
 
     private void setCurrentView(ScreenContainer view) {
@@ -33,5 +40,9 @@ public class PlayStoreServer {
         panel.setFocusable(true);
         panel.requestFocusInWindow();
         return panel;
+    }
+
+    public void refresh() {
+        setCurrentView(history.peek());
     }
 }

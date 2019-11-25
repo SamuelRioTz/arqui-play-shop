@@ -1,8 +1,7 @@
-package phone.screen;
+package manager.screen;
 
-import java.awt.Panel;
-
-import javax.swing.JMenuBar;
+import javax.swing.*;
+import java.awt.*;
 
 public interface ScreenContainer {
 

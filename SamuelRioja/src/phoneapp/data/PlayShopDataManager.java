@@ -1,27 +1,37 @@
-package phone.app;
+package phoneapp.data;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import phone.screen.Phone;
-import phone.screen.PlayStoreAppScreen;
-import phone.screen.ScreenContainer;
+import phoneapp.screen.PlayShopScreenContainer;
+import phoneapp.screen.PlayStoreAppScreen;
+import phoneapp.screen.ScreenContainer;
 
-public class PlayStoreApp implements PhoneApp {
-    private String name;
-    private Phone phone;
+public class PlayShopDataManager implements PhoneApp {
+    private String name = "Play Store";
+    private PlayShopScreenContainer playShopPhoneApp;
     private String version = "v1.0.0";
     private Map<String, PhoneApp> apps = new HashMap<>();
-    public Database database = new Database();
+    private Database database = new Database();
 
-    public PlayStoreApp() {
-        name = "Play Store";
-        new PlayStoreServerClient(this);
+
+    public PlayShopDataManager() {
         apps.put("Play Store", this);
+    }
+
+    void setApps(Map<String, PhoneApp> apps) {
+        apps.put("Play Store", this);
+        this.apps = apps;
+        if (playShopPhoneApp != null)
+            playShopPhoneApp.refresh();
     }
 
     public Map<String, PhoneApp> getApps() {
         return apps;
+    }
+
+    public void setPlayShopPhoneApp(PlayShopScreenContainer playShopPhoneApp) {
+        this.playShopPhoneApp = playShopPhoneApp;
     }
 
     @Override
@@ -72,24 +82,27 @@ public class PlayStoreApp implements PhoneApp {
         phoneApp.uninstall();
     }
 
-    @Override
     public void close() {
         database.saveApps();
-        phone.back();
+        playShopPhoneApp.back();
     }
 
     @Override
-    public ScreenContainer getScreen(Phone phone) {
-        this.phone = phone;
+    public ScreenContainer getScreen() {
         return new PlayStoreAppScreen(this);
     }
 
-    void loadApps(Map<String, PhoneApp> apps) {
-        this.apps = apps;
-    }
 
     public void refresh() {
-        if (phone != null)
-            phone.refresh();
+        if (playShopPhoneApp != null)
+            playShopPhoneApp.refresh();
+    }
+
+    public void back() {
+        this.playShopPhoneApp.back();
+    }
+
+    public void setScreen(ScreenContainer screen) {
+        this.playShopPhoneApp.setScreen(screen);
     }
 }

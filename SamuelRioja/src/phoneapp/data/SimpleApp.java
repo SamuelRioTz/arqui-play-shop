@@ -1,14 +1,11 @@
-package phone.app;
+package phoneapp.data;
 
-import phone.screen.Phone;
-import phone.screen.ScreenContainer;
-import phone.screen.SimpleAppScreen;
+import phoneapp.screen.ScreenContainer;
 
 public class SimpleApp implements PhoneApp {
     private String name;
     private String version;
     private String installed;
-    private Phone phone;
 
     SimpleApp(String name, String version) {
         this.name = name;
@@ -61,15 +58,10 @@ public class SimpleApp implements PhoneApp {
         installed = null;
     }
 
-    @Override
-    public void close() {
-        phone.back();
-    }
 
     @Override
-    public ScreenContainer getScreen(Phone phone) {
-        this.phone = phone;
-        return new SimpleAppScreen(this);
+    public ScreenContainer getScreen() {
+        return null;
     }
 
     @Override

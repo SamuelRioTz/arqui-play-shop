@@ -1,14 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="71220e1d-9660-437b-ba09-9d4d5196194b" name="Default Changelist" comment="" />
+    <list default="true" id="71220e1d-9660-437b-ba09-9d4d5196194b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/manager/PlayShopManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/manager/data/ConnectionManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/manager/data/DataManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/manager/data/PhoneApp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/phoneapp/PlayShopPhoneApp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/server/PlayShopServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/server/data/ConnectionManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/server/data/Database.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/server/data/PhoneApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database.txt" beforeDir="false" afterPath="$PROJECT_DIR$/database.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/phone/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/phone/app/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/phoneapp/data/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/phone/app/PhoneApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/phoneapp/data/PhoneApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/phone/app/PlayStoreApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/phoneapp/data/PlayShopDataManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/phone/app/PlayStoreServerClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/phoneapp/data/ConnectionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/phone/app/SimpleApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/phoneapp/data/SimpleApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/phone/screen/HomeScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/phoneapp/screen/HomeScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/phone/screen/Phone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/phoneapp/screen/PlayShopScreenContainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/phone/screen/PlayStoreAppScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/phoneapp/screen/PlayStoreAppScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/phone/screen/ScreenContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/phoneapp/screen/ScreenContainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/phone/screen/SimpleAppScreen.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/phone/server/PlayStoreServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/screen/PlayShopScreenContainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/phone/server/PlayStoreServerScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/screen/HomeScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/phone/server/ScreenContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/screen/ScreenContainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/phone/server/Server.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/phone/server/model/ServerApp.java" beforeDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="1SJqqcbm8XM5FH2IEYdEEF3KB67" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="manager" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -23,7 +73,7 @@
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="phone.Main" />
+      <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="SamueRioja" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <RunnerSettings RunnerId="Run" />
@@ -32,6 +82,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -45,5 +100,18 @@
       <updated>1571292237753</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

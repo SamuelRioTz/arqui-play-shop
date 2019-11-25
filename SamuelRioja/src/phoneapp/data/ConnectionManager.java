@@ -1,20 +1,24 @@
-package phone.app;
+package phoneapp.data;
 
 import java.io.BufferedInputStream;
 import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
 
-class PlayStoreServerClient {
-    private PlayStoreApp playStoreApp;
+public class ConnectionManager {
+    private PlayShopDataManager playShopDataManager;
+    private DataOutputStream dataOutputStream;
 
-    PlayStoreServerClient(PlayStoreApp playStoreApp) {
-        this.playStoreApp = playStoreApp;
+    public ConnectionManager(PlayShopDataManager playShopDataManager) {
+        this.playShopDataManager = playShopDataManager;
         new Thread(() -> {
             try {
                 Socket socket = new Socket("127.0.0.1", 5000);
+                this.dataOutputStream = new DataOutputStream(socket.getOutputStream());
+                dataOutputStream.writeUTF("getAllActiveApps");
                 DataInputStream dataInputStream = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
                 String message = "";
                 while (!message.equals("exit")) {
@@ -34,32 +38,25 @@ class PlayStoreServerClient {
     private void messageParser(String input) {
         String[] message = input.split("->");
         switch (message[0]) {
-            case "loadData":
-                loadData(message[1]);
+            case "getAllActiveApps":
+                getAllActiveApps(message[1]);
                 break;
             case "updateVersion":
-                updateVersion(message[1]);
+//                updateVersion(message[1]);
                 break;
         }
     }
 
-    private void loadData(String appsString) {
-        String[] appList = appsString.split(":");
+    private void getAllActiveApps(String input) {
+        String[] tempApps = input.split(";");
         Map<String, PhoneApp> apps = new HashMap<>();
-        apps.put("Play Store", playStoreApp);
-        for (String app : appList) {
-            String[] appDetail = app.split("=");
-            String appInstalledVersion = playStoreApp.database.getVersion(appDetail[0]);
-            apps.put(appDetail[0], new SimpleApp(appDetail[0], appDetail[1], appInstalledVersion));
+        for (String tempApp : tempApps) {
+            String[] appSplit = tempApp.split(":");
+            if (appSplit.length == 3) {
+                PhoneApp phoneApp = new SimpleApp(appSplit[0], appSplit[1]);
+                apps.put(phoneApp.getName(), phoneApp);
+            }
         }
-        playStoreApp.loadApps(apps);
-    }
-
-    private void updateVersion(String appString) {
-        String[] appInfo = appString.split("=");
-        PhoneApp focusApp = playStoreApp.getApps().get(appInfo[0]);
-        focusApp.setVersion(appInfo[1]);
-
-        playStoreApp.refresh();
+        playShopDataManager.setApps(apps);
     }
 }

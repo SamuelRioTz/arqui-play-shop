@@ -1,7 +1,6 @@
-package phone.app;
+package phoneapp.data;
 
-import phone.screen.Phone;
-import phone.screen.ScreenContainer;
+import phoneapp.screen.ScreenContainer;
 
 public interface PhoneApp {
 
@@ -21,8 +20,6 @@ public interface PhoneApp {
 
     void uninstall();
 
-    void close();
-
-    ScreenContainer getScreen(Phone phone);
+    ScreenContainer getScreen();
 
 }

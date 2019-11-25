@@ -1,4 +1,4 @@
-package phone.app;
+package phoneapp.data;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-class Database {
+public class Database {
     private List<PhoneApp> apps = new ArrayList<>();
     private Map<String, String> loadApps = new HashMap<>();
 
