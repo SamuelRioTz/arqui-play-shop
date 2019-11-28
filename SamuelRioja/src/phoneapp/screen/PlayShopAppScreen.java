@@ -1,19 +1,11 @@
 package phoneapp.screen;
 
-import java.awt.BorderLayout;
-import java.awt.Button;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.Label;
-import java.awt.Panel;
-
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-
 import phoneapp.data.PhoneApp;
 import phoneapp.data.PlayShopDataManager;
+
+import javax.swing.*;
+import java.awt.*;
+
 
 public class PlayStoreAppScreen implements ScreenContainer {
     private PlayShopDataManager playShopDataManager;

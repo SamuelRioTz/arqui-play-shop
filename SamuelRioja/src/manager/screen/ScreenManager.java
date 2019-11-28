@@ -45,4 +45,12 @@ public class PlayShopScreenContainer {
     public void refresh() {
         setCurrentView(history.peek());
     }
+
+    public void back() {
+        history.pop();
+        if (!history.isEmpty())
+            setCurrentView(history.peek());
+        else
+           window.dispose();
+    }
 }
