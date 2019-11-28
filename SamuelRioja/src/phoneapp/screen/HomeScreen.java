@@ -10,21 +10,22 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import phoneapp.data.PhoneApp;
-import phoneapp.data.PlayShopDataManager;
+import phoneapp.data.DataManager;
+import phoneapp.data.SimpleApp;
 
 public class HomeScreen implements ScreenContainer {
-    private PlayShopDataManager playShopDataManager;
+    private DataManager dataManager;
 
-    HomeScreen(PlayShopDataManager playShopDataManager) {
-        this.playShopDataManager = playShopDataManager;
+    HomeScreen(DataManager dataManager) {
+        this.dataManager = dataManager;
     }
 
     @Override
     public Panel getBody(Panel panel) {
         panel.setBackground(Color.white);
         panel.setLayout(new GridLayout(10, 1));
-        for (PhoneApp app : playShopDataManager.getApps().values()) {
+        panel.add(dataManager.getPlayShopApp().getAppButton(dataManager));
+        for (SimpleApp app : dataManager.getApps().values()) {
             if (app.isInstalled())
                 panel.add(getAppButton(app));
         }
@@ -41,20 +42,16 @@ public class HomeScreen implements ScreenContainer {
         JMenuBar jMenuBar = new JMenuBar();
         JMenu fileMenu = new JMenu("File");
         JMenuItem quitMenuItem = new JMenuItem("Quit");
-        quitMenuItem.addActionListener(e -> playShopDataManager.back());
+        quitMenuItem.addActionListener(e -> dataManager.back());
         fileMenu.add(quitMenuItem);
         jMenuBar.add(fileMenu);
         return jMenuBar;
     }
 
-    private Panel getAppButton(PhoneApp phoneApp) {
+    private Panel getAppButton(SimpleApp phoneApp) {
         Panel panel = new Panel(new BorderLayout());
         panel.setBackground(Color.lightGray);
         Button button = new Button(phoneApp.getName() + " (" + phoneApp.getInstalledVersion() + ")");
-        button.addActionListener(e -> {
-            ScreenContainer screenContainer = phoneApp.getScreen();
-            if (screenContainer != null) playShopDataManager.setScreen(screenContainer);
-        });
         panel.add(button, BorderLayout.CENTER);
         return panel;
     }

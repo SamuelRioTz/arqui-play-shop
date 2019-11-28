@@ -5,7 +5,7 @@ public class PhoneApp {
     private String version;
     private String state;
 
-    public PhoneApp(String name, String version, String state) {
+    PhoneApp(String name, String version, String state) {
         this.name = name;
         this.version = version;
         this.state = state;
@@ -28,12 +28,7 @@ public class PhoneApp {
         return state;
     }
 
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    @Override
-    public String toString() {
-        return name + ":" + version + ":" + state;
+    public boolean isActive() {
+        return state.equals("active");
     }
 }

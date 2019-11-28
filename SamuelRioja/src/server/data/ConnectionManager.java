@@ -7,11 +7,11 @@ import java.io.IOException;
 import java.net.Socket;
 
 public class ConnectionManager {
-    private Database database;
+    private DataManager dataManager;
     private DataOutputStream dataOutputStream;
 
-    public ConnectionManager(Database database, Socket socket) throws IOException {
-        this.database = database;
+    public ConnectionManager(DataManager dataManager, Socket socket) throws IOException {
+        this.dataManager = dataManager;
         this.dataOutputStream = new DataOutputStream(socket.getOutputStream());
         DataInputStream dataInputStream = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
         String message = "";
@@ -25,8 +25,15 @@ public class ConnectionManager {
         }
     }
 
+    private void request(String data) {
+        try {
+            dataOutputStream.writeUTF(data);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void messageParser(String input) {
-        System.out.println(input);
         String[] message = input.split("->");
         switch (message[0]) {
             case "getAllApps":
@@ -36,37 +43,37 @@ public class ConnectionManager {
                 getAllActiveApps();
                 break;
             case "addApp":
-                System.out.println("addApp");
+                addApp(message[1]);
                 break;
-            case "updateVersion":
-                System.out.println("updateVersion");
+            case "upgradeVersion":
+                upgradeVersion(message[1]);
+                break;
+            case "deactivateApp":
+                deactivateApp(message[1]);
                 break;
         }
     }
 
     private void getAllApps() {
-        System.out.println("getAllApps server");
-        try {
-            dataOutputStream.writeUTF("getAllApps->" + database.getAllApps());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        request("getAllApps->" + dataManager.getAllApps());
     }
 
     private void getAllActiveApps() {
-        System.out.println("getAllActiveApps server");
-        try {
-            dataOutputStream.writeUTF("getAllActiveApps->" + database.getAllActiveApps());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        request("getAllActiveApps->" + dataManager.getAllActiveApps());
     }
 
-    public void addApp() {
-
+    private void addApp(String input) {
+        dataManager.addApp(input);
+        getAllApps();
     }
 
-    public void updateVersion() {
+    private void upgradeVersion(String input) {
+        dataManager.updateVersion(input);
+        getAllApps();
+    }
 
+    private void deactivateApp(String input) {
+        dataManager.deactivateApp(input);
+        getAllApps();
     }
 }

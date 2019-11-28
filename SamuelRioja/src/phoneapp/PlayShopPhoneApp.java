@@ -1,14 +1,13 @@
 package phoneapp;
 
 import phoneapp.data.ConnectionManager;
-import phoneapp.data.PlayShopDataManager;
-import phoneapp.screen.PlayShopScreenContainer;
+import phoneapp.data.DataManager;
+import phoneapp.screen.ScreenManager;
 
 public class PlayShopPhoneApp {
     public PlayShopPhoneApp() {
-        PlayShopDataManager playShopDataManager = new PlayShopDataManager();
-         new ConnectionManager(playShopDataManager);
-        PlayShopScreenContainer playShopScreenContainer = new PlayShopScreenContainer(playShopDataManager);
-        playShopDataManager.setPlayShopPhoneApp(playShopScreenContainer);
+        DataManager dataManager = new DataManager();
+        new ConnectionManager(dataManager);
+        dataManager.setPlayShopPhoneApp(new ScreenManager(dataManager));
     }
 }

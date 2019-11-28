@@ -1,14 +1,14 @@
 package server;
 
 import server.data.ConnectionManager;
-import server.data.Database;
+import server.data.DataManager;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 public class PlayShopServer {
 
-    private Database database = new Database();
+    private DataManager dataManager = new DataManager();
 
     public PlayShopServer() {
         new Thread(() -> {
@@ -19,7 +19,7 @@ public class PlayShopServer {
                         Socket socket = server.accept();
                         new Thread(() -> {
                             try {
-                                new ConnectionManager(database, socket);
+                                new ConnectionManager(dataManager, socket);
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }

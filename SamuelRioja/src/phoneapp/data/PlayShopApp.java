@@ -1,39 +1,23 @@
 package phoneapp.data;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import phoneapp.screen.ScreenManager;
 import phoneapp.screen.PlayShopAppScreen;
-import phoneapp.screen.ScreenContainer;
 
-public class PlayShop implements PhoneApp {
-    private String name = "Play Store";
-    private String version = "v1.0.0";
-    private Map<String, PhoneApp> apps = new HashMap<>();
+import java.awt.*;
 
+public class PlayShopApp {
 
-    public PlayShop() {
-        apps.put("Play Store", this);
+    private String getName() {
+        return "Play Store";
     }
 
-
-
-    @Override
-    public String getName() {
-        return name;
+    public Panel getAppButton(DataManager dataManager) {
+        Panel panel = new Panel(new BorderLayout());
+        panel.setBackground(Color.lightGray);
+        Button button = new Button(getName() + " ( 1.0 )");
+        button.addActionListener(e ->
+                dataManager.setScreen(new PlayShopAppScreen(dataManager))
+        );
+        panel.add(button, BorderLayout.CENTER);
+        return panel;
     }
-
-    @Override
-    public String getVersion() {
-        return version;
-    }
-
-
-    @Override
-    public ScreenContainer getScreen(DataManager dataManager) {
-        return new PlayShopAppScreen(dataManager);
-    }
-
-
 }

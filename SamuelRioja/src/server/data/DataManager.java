@@ -1,35 +1,26 @@
 package server.data;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
-public class Database {
-
-    private Map<String, PhoneApp> apps = new HashMap<>();
+public class DataManager {
+    private Database database = new Database();
+    private Map<String, PhoneApp> apps;
     private Gson gson = new Gson();
 
-    public Database() {
-        apps.put("app uno", new PhoneApp("app uno", "1.0", "active"));
-        apps.put("app dos", new PhoneApp("app dos", "2.0", "active"));
-        apps.put("app tres", new PhoneApp("app tres", "3.0", "active"));
-        apps.put("app cuatro", new PhoneApp("app cuatro", "4.0", "inactive"));
+    public DataManager() {
+        apps = gson.fromJson(database.read(), new TypeToken<Map<String, PhoneApp>>() {
+        }.getType());
     }
 
-    public void addApp(PhoneApp app) {
-        apps.put(app.name, app);
+    private void saveCurrentState() {
+        database.write(gson.toJson(apps));
     }
 
-    public void deactivateApp(String name) {
-        PhoneApp phoneApp = apps.get(name);
-        if (phoneApp != null) {
-            phoneApp.state = "inactivate";
-        }
-    }
 
     String getAllApps() {
         return gson.toJson(apps);
@@ -37,10 +28,36 @@ public class Database {
 
     String getAllActiveApps() {
         Map<String, PhoneApp> response = new HashMap<>();
-//        List<PhoneApp> response = new ArrayList<>();
         for (PhoneApp app : apps.values()) {
-            if (app.state.equals("active")) response.put(app.name,app);
+            if (app.getState().equals("active")) response.put(app.getName(), app);
         }
         return gson.toJson(response);
     }
+
+    void addApp(String input) {
+        PhoneApp newVersionApp = gson.fromJson(input, PhoneApp.class);
+        if (apps.get(newVersionApp.getName()) == null && newVersionApp.isInitialVersion()) {
+            apps.put(newVersionApp.getName(), newVersionApp);
+            saveCurrentState();
+        }
+    }
+
+    void updateVersion(String input) {
+        PhoneApp newVersionApp = gson.fromJson(input, PhoneApp.class);
+        PhoneApp toUpgrade = apps.get(newVersionApp.getName());
+        if (toUpgrade.isUpgradeable(newVersionApp)) {
+            apps.put(newVersionApp.getName(), newVersionApp);
+            saveCurrentState();
+        }
+    }
+
+    void deactivateApp(String input) {
+        PhoneApp phoneApp = gson.fromJson(input, PhoneApp.class);
+        PhoneApp currentApp = apps.get(phoneApp.getName());
+        if (currentApp != null) {
+            currentApp.deactivate();
+            saveCurrentState();
+        }
+    }
+
 }

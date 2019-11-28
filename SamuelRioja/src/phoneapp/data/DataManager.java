@@ -1,56 +1,99 @@
 package phoneapp.data;
 
-import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import phoneapp.screen.ScreenContainer;
+import phoneapp.screen.ScreenManager;
+
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-public class Database {
-    private List<PhoneApp> apps = new ArrayList<>();
-    private Map<String, String> loadApps = new HashMap<>();
+public class DataManager {
+    private ConnectionManager connectionManager;
+    private PlayShopApp playShopApp = new PlayShopApp();
+    private Gson gson = new Gson();
+    private Database database = new Database();
+    private ScreenManager playShopPhoneApp;
+    private Map<String, SimpleApp> apps;
 
-    Database() {
-        try {
-            File file = new File("./database.txt");
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            String st;
-            while ((st = br.readLine()) != null) {
-                String[] temp = st.split("=");
-                if (temp.length == 2) {
-                    loadApps.put(temp[0], temp[1]);
+    public DataManager() {
+        apps = gson.fromJson(database.read(), new TypeToken<Map<String, SimpleApp>>() {
+        }.getType());
+    }
+
+    public void setPlayShopPhoneApp(ScreenManager playShopPhoneApp) {
+        this.playShopPhoneApp = playShopPhoneApp;
+    }
+
+    void setConnectionManager(ConnectionManager connectionManager) {
+        this.connectionManager = connectionManager;
+        connectionManager.getAllActiveApps();
+    }
+
+    private void saveCurrentState() {
+        Map<String, SimpleApp> toSave = new HashMap<>();
+        for (SimpleApp app : apps.values()) {
+            if (app.isInstalled())
+                toSave.put(app.getName(), app);
+        }
+        database.write(gson.toJson(toSave));
+    }
+
+    public void installApp(SimpleApp app) {
+        app.install(app.getVersion());
+        saveCurrentState();
+        refresh();
+    }
+
+    public void unInstallApp(SimpleApp app) {
+        app.install(null);
+        saveCurrentState();
+        refresh();
+    }
+
+    void setApps(String input) {
+        Map<String, SimpleApp> refreshApps = gson.fromJson(input, new TypeToken<Map<String, SimpleApp>>() {
+        }.getType());
+        for (SimpleApp app : apps.values()) {
+            SimpleApp currentInstalled = refreshApps.get(app.getName());
+            if (currentInstalled == null) {
+                if (app.isInstalled()) {
+                    app.setVersion(app.getInstalledVersion());
+                    refreshApps.put(app.getName(), app);
                 }
-                System.out.println(st);
+            } else {
+                if (app.isInstalled()) {
+                    currentInstalled.install(app.getInstalledVersion());
+                }
             }
-        } catch (IOException e) {
-//            e.printStackTrace();
         }
+        apps = refreshApps;
     }
 
-    String getVersion(String appName) {
-        return loadApps.get(appName);
+    public void refresh() {
+        if (playShopPhoneApp != null)
+            playShopPhoneApp.refresh();
     }
 
-    void installApp(PhoneApp app) {
-        apps.add(app);
+    public Map<String, SimpleApp> getApps() {
+        return apps;
     }
 
-    void unInstallApp(PhoneApp app) {
-        apps.remove(app);
+    public void close() {
+        back();
     }
 
-    void saveApps() {
-        try {
-            Writer writer = new BufferedWriter(new OutputStreamWriter(
-                    new FileOutputStream("database.txt"), StandardCharsets.UTF_8));
-            for (PhoneApp app : apps) {
-                writer.write(app.toString() + "\n");
-            }
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void setScreen(ScreenContainer screen) {
+        connectionManager.getAllActiveApps();
+        playShopPhoneApp.setScreen(screen);
     }
 
+    public void back() {
+        playShopPhoneApp.back();
+    }
+
+    public PlayShopApp getPlayShopApp() {
+        return playShopApp;
+    }
 }

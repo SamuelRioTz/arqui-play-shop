@@ -1,20 +1,20 @@
 package phoneapp.screen;
 
-import phoneapp.data.PhoneApp;
-import phoneapp.data.PlayShopDataManager;
+import phoneapp.data.DataManager;
+import phoneapp.data.SimpleApp;
 
 import javax.swing.*;
 import java.awt.*;
 
 
-public class PlayStoreAppScreen implements ScreenContainer {
-    private PlayShopDataManager playShopDataManager;
+public class PlayShopAppScreen implements ScreenContainer {
+    private DataManager dataManager;
 
-    public PlayStoreAppScreen(PlayShopDataManager playShopDataManager) {
-        this.playShopDataManager = playShopDataManager;
+    public PlayShopAppScreen(DataManager dataManager) {
+        this.dataManager = dataManager;
     }
 
-    private Panel getAppPanel(PhoneApp phoneApp) {
+    private Panel getAppPanel(SimpleApp phoneApp) {
         Panel panel = new Panel(new BorderLayout());
         Label label = new Label(phoneApp.getName() + " (" + phoneApp.getVersion() + ")");
         panel.setBackground(Color.lightGray);
@@ -23,20 +23,19 @@ public class PlayStoreAppScreen implements ScreenContainer {
         button.setLabel(phoneApp.isInstalled() ? "Desinstalar" : "Instalar");
         button.addActionListener(e -> {
             if (!phoneApp.isInstalled()) {
-                playShopDataManager.installApp(phoneApp);
+                dataManager.installApp(phoneApp);
                 button.setLabel("Desinstalar");
             } else {
-                playShopDataManager.uninstallApp(phoneApp);
+                dataManager.unInstallApp(phoneApp);
                 button.setLabel("Instalar");
             }
-            playShopDataManager.refresh();
+            dataManager.refresh();
         });
-        if (phoneApp.isInstalled() && phoneApp.isNewVersion()) {
+        if (phoneApp.isInstalled() && phoneApp.isUpgradeable()) {
             Button updateButton = new Button("Actualizar");
-            updateButton.addActionListener(e -> {
-                phoneApp.install();
-                playShopDataManager.refresh();
-            });
+            updateButton.addActionListener(e ->
+                    dataManager.installApp(phoneApp)
+            );
             panel.add(updateButton, BorderLayout.WEST);
         }
         panel.add(label, BorderLayout.CENTER);
@@ -48,9 +47,9 @@ public class PlayStoreAppScreen implements ScreenContainer {
     public Panel getBody(Panel panel) {
         panel.setLayout(new BorderLayout());
         panel.setLayout(new GridLayout(10, 1));
-        for (PhoneApp app : playShopDataManager.getApps().values()) {
-            if (!(app instanceof PlayShopDataManager))
-                panel.add(getAppPanel(app));
+        for (SimpleApp app : dataManager.getApps().values()) {
+//            if (!(app instanceof PlayShopApp))
+            panel.add(getAppPanel(app));
         }
         return panel;
     }
@@ -65,7 +64,7 @@ public class PlayStoreAppScreen implements ScreenContainer {
         JMenuBar jMenuBar = new JMenuBar();
         JMenu fileMenu = new JMenu("File");
         JMenuItem quitMenuItem = new JMenuItem("Quit");
-        quitMenuItem.addActionListener(e -> playShopDataManager.close());
+        quitMenuItem.addActionListener(e -> dataManager.close());
         fileMenu.add(quitMenuItem);
         jMenuBar.add(fileMenu);
         return jMenuBar;

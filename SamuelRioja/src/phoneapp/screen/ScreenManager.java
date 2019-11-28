@@ -1,20 +1,20 @@
 package phoneapp.screen;
 
-import phoneapp.data.PlayShopDataManager;
+import phoneapp.data.DataManager;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.Stack;
 
-public class PlayShopScreenContainer {
+public class ScreenManager {
     private JFrame window = new JFrame();
     private Stack<ScreenContainer> history = new Stack<>();
 
-    public PlayShopScreenContainer(PlayShopDataManager playShopDataManager) {
+    public ScreenManager(DataManager dataManager) {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
         window.setLocation(500, 0);
-        setScreen(new HomeScreen(playShopDataManager));
+        setScreen(new HomeScreen(dataManager));
         window.setVisible(true);
     }
 

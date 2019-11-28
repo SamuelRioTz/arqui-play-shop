@@ -10,13 +10,13 @@ import java.util.Stack;
 import javax.swing.JFrame;
 
 
-public class PlayShopScreenContainer {
+public class ScreenManager {
 
     private JFrame window = new JFrame();
 
     private Stack<ScreenContainer> history = new Stack<>();
 
-    public PlayShopScreenContainer(DataManager dataManager) {
+    public ScreenManager(DataManager dataManager) {
         window.setResizable(false);
         setScreen(new HomeScreen(dataManager));
         window.setVisible(true);

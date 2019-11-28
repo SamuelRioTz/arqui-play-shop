@@ -11,7 +11,7 @@ import java.awt.Label;
 import java.awt.Panel;
 import java.awt.TextField;
 
-import javax.swing.JMenuBar;
+import javax.swing.*;
 
 
 public class HomeScreen implements ScreenContainer {
@@ -38,25 +38,57 @@ public class HomeScreen implements ScreenContainer {
 
     @Override
     public JMenuBar getMenu() {
-        return null;
+        JMenuBar jMenuBar = new JMenuBar();
+        JMenu fileMenu = new JMenu("File");
+        JMenuItem quitMenuItem = new JMenuItem("Exit");
+        quitMenuItem.addActionListener(e -> dataManager.back());
+        fileMenu.add(quitMenuItem);
+        JMenuItem addMenuItem = new JMenuItem("Add");
+        addMenuItem.addActionListener(e -> {
+            String name = JOptionPane.showInputDialog("Add new PhoneApp");
+            if (name != null) dataManager.addApp(name);
+        });
+        fileMenu.add(addMenuItem);
+        jMenuBar.add(fileMenu);
+        return jMenuBar;
     }
 
     private Panel getAppButton(PhoneApp phoneApp) {
         Panel panel = new Panel(new BorderLayout());
         panel.setBackground(Color.lightGray);
+
+        Panel bodyPanel = new Panel(new BorderLayout());
+        Panel descriptionPanel = new Panel(new BorderLayout());
         Label appName = new Label(phoneApp.getName());
-        panel.add(appName, BorderLayout.CENTER);
+        Label appState = new Label(phoneApp.getState());
+        descriptionPanel.add(appName, BorderLayout.CENTER);
+        descriptionPanel.add(appState, BorderLayout.EAST);
+
         Panel versionPanel = new Panel(new BorderLayout());
         TextField textField = new TextField(phoneApp.getVersion());
-        Button sendButton = new Button("Update version");
-        sendButton.addActionListener(e -> {
-            phoneApp.setVersion(textField.getText());
-            dataManager.updateVersion(phoneApp);
-        });
         versionPanel.add(new Label("Version:"), BorderLayout.WEST);
-        versionPanel.add(sendButton, BorderLayout.EAST);
         versionPanel.add(textField, BorderLayout.CENTER);
-        panel.add(versionPanel, BorderLayout.SOUTH);
+        bodyPanel.add(versionPanel, BorderLayout.SOUTH);
+        bodyPanel.add(descriptionPanel, BorderLayout.NORTH);
+
+        panel.add(bodyPanel, BorderLayout.CENTER);
+        if (phoneApp.isActive()) {
+            Panel buttonsPanel = new Panel(new BorderLayout());
+            Button sendButton = new Button("Upgrade version");
+            sendButton.addActionListener(e -> {
+                phoneApp.setVersion(textField.getText());
+                dataManager.upgradeVersion(phoneApp);
+            });
+
+            Button DeactivateButton = new Button("Deactivate");
+            DeactivateButton.addActionListener(e ->
+                    dataManager.deactivateApp(phoneApp)
+            );
+            buttonsPanel.add(DeactivateButton, BorderLayout.NORTH);
+            buttonsPanel.add(sendButton, BorderLayout.SOUTH);
+
+            panel.add(buttonsPanel, BorderLayout.WEST);
+        }
         return panel;
     }
 }
