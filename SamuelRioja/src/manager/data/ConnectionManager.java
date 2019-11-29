@@ -22,13 +22,15 @@ public class ConnectionManager {
                 dataManager.setConnectionManager(this);
                 DataInputStream dataInputStream = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
                 String message = "";
-                while (!message.equals("exit")) {
-                    try {
+                try {
+                    while (!message.equals("exit")) {
                         message = dataInputStream.readUTF();
                         messageParser(message);
-                    } catch (IOException i) {
-                        i.printStackTrace();
+
                     }
+                } catch (IOException i) {
+                    System.out.println("Server disconnected");
+//                    i.printStackTrace();
                 }
             } catch (IOException e) {
                 System.out.println(e.toString());
