@@ -1,1 +1,1 @@
-{"Youtube":{"name":"Youtube","version":"1.1","installed":"1.1"},"Facebook":{"name":"Facebook","version":"1.5","installed":"1.5"},"Whatsapp":{"name":"Whatsapp","version":"1.0","installed":"1.0"}}
+{"Youtube":{"name":"Youtube","version":"1.1","installed":"1.1"},"Facebook":{"name":"Facebook","version":"1.5","installed":"1.5"}}

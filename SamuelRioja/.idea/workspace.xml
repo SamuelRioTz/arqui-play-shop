@@ -3,11 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="71220e1d-9660-437b-ba09-9d4d5196194b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manager/data/ConnectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/data/ConnectionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manager/data/DataManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/data/DataManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manager/screen/HomeScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/screen/HomeScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/data/ConnectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/data/ConnectionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/data/DataManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/data/DataManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database.phone.txt" beforeDir="false" afterPath="$PROJECT_DIR$/database.phone.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -54,7 +50,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Manager">
+  <component name="RunManager" selected="Application.PhoneApp">
     <configuration name="Manager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="manager.Manager" />
       <module name="SamueRioja" />
@@ -101,9 +97,9 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Manager" />
-        <item itemvalue="Application.Server" />
         <item itemvalue="Application.PhoneApp" />
+        <item itemvalue="Application.Server" />
+        <item itemvalue="Application.Manager" />
       </list>
     </recent_temporary>
   </component>
@@ -132,7 +128,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575046624606</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="feature search">
+      <created>1575049411137</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1575049411137</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -151,6 +154,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="last changes" />
     <MESSAGE value="fix error on disconnect" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix error on disconnect" />
+    <MESSAGE value="feature search" />
+    <option name="LAST_COMMIT_MESSAGE" value="feature search" />
   </component>
 </project>
