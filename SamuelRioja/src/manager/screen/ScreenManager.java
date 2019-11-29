@@ -51,6 +51,6 @@ public class ScreenManager {
         if (!history.isEmpty())
             setCurrentView(history.peek());
         else
-           window.dispose();
+            System.exit(0);
     }
 }

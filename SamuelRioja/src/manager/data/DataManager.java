@@ -44,14 +44,14 @@ public class DataManager {
 
     public void addApp(String name) {
         PhoneApp newApp = new PhoneApp(name, "1.0", "active");
-        connectionManager.addApp(gson.toJson(newApp));
+        if (connectionManager != null) connectionManager.addApp(gson.toJson(newApp));
     }
 
     public void upgradeVersion(PhoneApp phoneApp) {
-        connectionManager.upgradeVersion(gson.toJson(phoneApp));
+        if (connectionManager != null) connectionManager.upgradeVersion(gson.toJson(phoneApp));
     }
 
     public void deactivateApp(PhoneApp phoneApp) {
-        connectionManager.deactivateApp(gson.toJson(phoneApp));
+        if (connectionManager != null) connectionManager.deactivateApp(gson.toJson(phoneApp));
     }
 }

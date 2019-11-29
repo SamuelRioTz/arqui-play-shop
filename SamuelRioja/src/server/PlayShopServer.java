@@ -2,21 +2,25 @@ package server;
 
 import server.data.ConnectionManager;
 import server.data.DataManager;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class PlayShopServer {
+class PlayShopServer {
 
     private DataManager dataManager = new DataManager();
+    private int port = 5000;
 
-    public PlayShopServer() {
+    PlayShopServer() {
         new Thread(() -> {
             try {
-                ServerSocket server = new ServerSocket(5000);
+                ServerSocket server = new ServerSocket(port);
+                System.out.println("Server running on: " + port);
                 while (true) {
                     try {
                         Socket socket = server.accept();
+                        System.out.println("Client connected");
                         new Thread(() -> {
                             try {
                                 new ConnectionManager(dataManager, socket);

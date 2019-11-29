@@ -85,7 +85,8 @@ public class DataManager {
     }
 
     public void setScreen(ScreenContainer screen) {
-        connectionManager.getAllActiveApps();
+        if (connectionManager != null)
+            connectionManager.getAllActiveApps();
         playShopPhoneApp.setScreen(screen);
     }
 

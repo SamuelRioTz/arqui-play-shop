@@ -8,15 +8,16 @@ import java.net.Socket;
 
 public class ConnectionManager {
     private DataOutputStream dataOutputStream;
-
     private DataManager dataManager;
+    private String host = "127.0.0.1";
+    private int port = 5000;
 
 
     public ConnectionManager(DataManager dataManager) {
         this.dataManager = dataManager;
         new Thread(() -> {
             try {
-                Socket socket = new Socket("127.0.0.1", 5000);
+                Socket socket = new Socket(host, port);
                 this.dataOutputStream = new DataOutputStream(socket.getOutputStream());
 //              set connection after connected
                 dataManager.setConnectionManager(this);
@@ -31,7 +32,8 @@ public class ConnectionManager {
                     }
                 }
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println(e.toString());
+//                e.printStackTrace();
             }
         }).start();
     }
@@ -40,7 +42,7 @@ public class ConnectionManager {
         try {
             dataOutputStream.writeUTF(data);
         } catch (IOException e) {
-            e.printStackTrace();
+//            e.printStackTrace(); ignored
         }
     }
 

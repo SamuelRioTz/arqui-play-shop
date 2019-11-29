@@ -15,13 +15,14 @@ public class ConnectionManager {
         this.dataOutputStream = new DataOutputStream(socket.getOutputStream());
         DataInputStream dataInputStream = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
         String message = "";
-        while (!message.equals("exit")) {
-            try {
+        try {
+            while (!message.equals("exit")) {
                 message = dataInputStream.readUTF();
                 messageParser(message);
-            } catch (IOException i) {
-                i.printStackTrace();
             }
+        } catch (IOException i) {
+            System.out.println("Client disconnected");
+//            i.printStackTrace();
         }
     }
 

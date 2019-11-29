@@ -9,13 +9,14 @@ import java.net.Socket;
 public class ConnectionManager {
     private DataManager dataManager;
     private DataOutputStream dataOutputStream;
-
+    private String host = "127.0.0.1";
+    private int port = 5000;
 
     public ConnectionManager(DataManager dataManager) {
         this.dataManager = dataManager;
         new Thread(() -> {
             try {
-                Socket socket = new Socket("localhost", 5000);
+                Socket socket = new Socket(host, port);
                 this.dataOutputStream = new DataOutputStream(socket.getOutputStream());
 //              set connection after connected
                 dataManager.setConnectionManager(this);
@@ -30,7 +31,8 @@ public class ConnectionManager {
                     }
                 }
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println(e.toString());
+//                e.printStackTrace();
             }
         }).start();
     }
@@ -39,7 +41,7 @@ public class ConnectionManager {
         try {
             dataOutputStream.writeUTF(data);
         } catch (IOException e) {
-            e.printStackTrace();
+//            e.printStackTrace(); ignored
         }
     }
 
@@ -54,8 +56,10 @@ public class ConnectionManager {
         request("getAllApps");
     }
 
-     void addApp(String input) {request("addApp->" + input);
+    void addApp(String input) {
+        request("addApp->" + input);
     }
+
     void upgradeVersion(String input) {
         request("upgradeVersion->" + input);
     }
