@@ -70,4 +70,7 @@ public class ConnectionManager {
         request("deactivateApp->" + input);
     }
 
+    void searchApp(String text) {
+        request("searchApp->" + text);
+    }
 }

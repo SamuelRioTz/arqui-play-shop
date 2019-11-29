@@ -52,6 +52,9 @@ public class ConnectionManager {
             case "deactivateApp":
                 deactivateApp(message[1]);
                 break;
+            case "searchApp":
+                searchApp(message[1]);
+                break;
         }
     }
 
@@ -76,5 +79,9 @@ public class ConnectionManager {
     private void deactivateApp(String input) {
         dataManager.deactivateApp(input);
         getAllApps();
+    }
+
+    private void searchApp(String input) {
+        request("getAllApps->" + dataManager.searchApp(input));
     }
 }

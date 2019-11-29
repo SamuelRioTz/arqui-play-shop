@@ -25,6 +25,17 @@ public class HomeScreen implements ScreenContainer {
     public Panel getBody(Panel panel) {
         panel.setBackground(Color.white);
         panel.setLayout(new GridLayout(10, 1));
+
+        Panel searchPanel = new Panel(new BorderLayout());
+        TextField textField = new TextField("");
+        Button searchButton = new Button("Buscar");
+        searchButton.addActionListener(e ->
+                dataManager.searchApp(textField.getText())
+        );
+        searchPanel.add(textField, BorderLayout.CENTER);
+        searchPanel.add(searchButton, BorderLayout.WEST);
+        panel.add(searchPanel);
+
         for (PhoneApp app : dataManager.getApps()) {
             panel.add(getAppButton(app));
         }

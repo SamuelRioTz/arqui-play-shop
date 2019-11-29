@@ -54,4 +54,11 @@ public class DataManager {
     public void deactivateApp(PhoneApp phoneApp) {
         if (connectionManager != null) connectionManager.deactivateApp(gson.toJson(phoneApp));
     }
+
+    public void searchApp(String text) {
+        if (connectionManager != null) {
+            if (text.equals("")) connectionManager.getAllApps();
+            else connectionManager.searchApp(text);
+        }
+    }
 }

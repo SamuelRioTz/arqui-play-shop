@@ -60,4 +60,12 @@ public class DataManager {
         }
     }
 
+    String searchApp(String input) {
+        Map<String, PhoneApp> response = new HashMap<>();
+        for (PhoneApp app : apps.values()) {
+            if (app.getName().toLowerCase().contains(input.toLowerCase()))
+                response.put(app.getName(), app);
+        }
+        return gson.toJson(response);
+    }
 }
