@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class DataManager {
 
-    private Map<String, PhoneApp> apps = new HashMap<>();
+    private Map<String, ManagerPhoneApp> apps = new HashMap<>();
     private ConnectionManager connectionManager;
     private ScreenManager screenManager;
 
@@ -29,13 +29,13 @@ public class DataManager {
         this.screenManager.back();
     }
 
-    public Collection<PhoneApp> getApps() {
+    public Collection<ManagerPhoneApp> getApps() {
         return apps.values();
     }
 
 
     void setApps(String input) {
-        this.apps = gson.fromJson(input, new TypeToken<Map<String, PhoneApp>>() {
+        this.apps = gson.fromJson(input, new TypeToken<Map<String, ManagerPhoneApp>>() {
         }.getType());
         if (screenManager != null) {
             screenManager.refresh();
@@ -43,16 +43,16 @@ public class DataManager {
     }
 
     public void addApp(String name) {
-        PhoneApp newApp = new PhoneApp(name, "1.0", "active");
+        ManagerPhoneApp newApp = new ManagerPhoneApp(name, "1.0", "active");
         if (connectionManager != null) connectionManager.addApp(gson.toJson(newApp));
     }
 
-    public void upgradeVersion(PhoneApp phoneApp) {
-        if (connectionManager != null) connectionManager.upgradeVersion(gson.toJson(phoneApp));
+    public void upgradeVersion(ManagerPhoneApp managerPhoneApp) {
+        if (connectionManager != null) connectionManager.upgradeVersion(gson.toJson(managerPhoneApp));
     }
 
-    public void deactivateApp(PhoneApp phoneApp) {
-        if (connectionManager != null) connectionManager.deactivateApp(gson.toJson(phoneApp));
+    public void deactivateApp(ManagerPhoneApp managerPhoneApp) {
+        if (connectionManager != null) connectionManager.deactivateApp(gson.toJson(managerPhoneApp));
     }
 
     public void searchApp(String text) {

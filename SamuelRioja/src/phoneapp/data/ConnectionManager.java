@@ -1,53 +1,24 @@
 package phoneapp.data;
 
-import java.io.BufferedInputStream;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.net.Socket;
+import playshoplib.ConnectionClientManager;
 
-public class ConnectionManager {
-    private DataOutputStream dataOutputStream;
+public class ConnectionManager extends ConnectionClientManager {
     private DataManager dataManager;
-    private String host = "127.0.0.1";
-    private int port = 5000;
 
 
     public ConnectionManager(DataManager dataManager) {
+        super("localhost",5000);
         this.dataManager = dataManager;
-        new Thread(() -> {
-            try {
-                Socket socket = new Socket(host, port);
-                this.dataOutputStream = new DataOutputStream(socket.getOutputStream());
-//              set connection after connected
-                dataManager.setConnectionManager(this);
-                DataInputStream dataInputStream = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
-                String message = "";
-                try {
-                    while (!message.equals("exit")) {
-                        message = dataInputStream.readUTF();
-                        messageParser(message);
-                    }
-                } catch (IOException e) {
-                    System.out.println("Server disconnected");
-//                    e.printStackTrace();
-                }
-            } catch (IOException e) {
-                System.out.println(e.toString());
-//                e.printStackTrace();
-            }
-        }).start();
     }
 
-    private void request(String data) {
-        try {
-            dataOutputStream.writeUTF(data);
-        } catch (IOException e) {
-//            e.printStackTrace(); ignored
-        }
+
+    @Override
+    public void onConnection() {
+        dataManager.setConnectionManager(this);
     }
 
-    private void messageParser(String input) {
+    @Override
+    public void messageParser(String input) {
         String[] message = input.split("->");
         if ("getAllActiveApps".equals(message[0])) {
             dataManager.setApps(message[1]);

@@ -11,6 +11,7 @@ public class ConnectionManager {
     private DataOutputStream dataOutputStream;
 
     public ConnectionManager(DataManager dataManager, Socket socket) throws IOException {
+        log("Client connected");
         this.dataManager = dataManager;
         this.dataOutputStream = new DataOutputStream(socket.getOutputStream());
         DataInputStream dataInputStream = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
@@ -21,7 +22,7 @@ public class ConnectionManager {
                 messageParser(message);
             }
         } catch (IOException i) {
-            System.out.println("Client disconnected");
+            log("Client disconnected");
 //            i.printStackTrace();
         }
     }
@@ -35,6 +36,7 @@ public class ConnectionManager {
     }
 
     private void messageParser(String input) {
+        log(input);
         String[] message = input.split("->");
         switch (message[0]) {
             case "getAllApps":
@@ -83,5 +85,9 @@ public class ConnectionManager {
 
     private void searchApp(String input) {
         request("getAllApps->" + dataManager.searchApp(input));
+    }
+
+    private void log(String text) {
+        System.out.println(text);
     }
 }

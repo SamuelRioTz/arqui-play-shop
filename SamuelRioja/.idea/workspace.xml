@@ -2,8 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="71220e1d-9660-437b-ba09-9d4d5196194b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/playshoplib/ConnectionClientManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/playshoplib/PhoneApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database.phone.txt" beforeDir="false" afterPath="$PROJECT_DIR$/database.phone.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/manager/data/ConnectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/data/ConnectionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/manager/data/DataManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/data/DataManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/manager/data/PhoneApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/data/ManagerPhoneApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/manager/screen/HomeScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/screen/HomeScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/phoneapp/data/ConnectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/phoneapp/data/ConnectionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/phoneapp/data/DataManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/phoneapp/data/DataManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/phoneapp/data/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/playshoplib/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/phoneapp/data/SimpleApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/phoneapp/data/SimpleApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/PlayShopServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/PlayShopServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/data/ConnectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/data/ConnectionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/data/DataManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/data/DataManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/data/Database.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/data/PhoneApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/data/ServerPhoneApp.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -97,9 +111,9 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.PhoneApp" />
-        <item itemvalue="Application.Server" />
         <item itemvalue="Application.Manager" />
+        <item itemvalue="Application.Server" />
+        <item itemvalue="Application.PhoneApp" />
       </list>
     </recent_temporary>
   </component>
@@ -135,7 +149,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575049411137</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="feature search">
+      <created>1575051036570</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1575051036570</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import phoneapp.screen.ScreenContainer;
 import phoneapp.screen.ScreenManager;
+import playshoplib.Database;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +14,7 @@ public class DataManager {
     private ConnectionManager connectionManager;
     private PlayShopApp playShopApp = new PlayShopApp();
     private Gson gson = new Gson();
-    private Database database = new Database();
+    private Database database = new Database("./database.phone.txt");
     private ScreenManager playShopPhoneApp;
     private Map<String, SimpleApp> apps;
 

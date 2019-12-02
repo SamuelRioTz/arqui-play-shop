@@ -20,7 +20,6 @@ class PlayShopServer {
                 while (true) {
                     try {
                         Socket socket = server.accept();
-                        System.out.println("Client connected");
                         new Thread(() -> {
                             try {
                                 new ConnectionManager(dataManager, socket);

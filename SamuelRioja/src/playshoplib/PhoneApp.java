@@ -1,11 +1,11 @@
-package manager.data;
+package playshoplib;
 
 public class PhoneApp {
     private String name;
     private String version;
     private String state;
 
-    PhoneApp(String name, String version, String state) {
+    public PhoneApp(String name, String version, String state) {
         this.name = name;
         this.version = version;
         this.state = state;
@@ -15,6 +15,9 @@ public class PhoneApp {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getVersion() {
         return version;
@@ -28,7 +31,7 @@ public class PhoneApp {
         return state;
     }
 
-    public boolean isActive() {
-        return state.equals("active");
+    public void setState(String state) {
+        this.state = state;
     }
 }

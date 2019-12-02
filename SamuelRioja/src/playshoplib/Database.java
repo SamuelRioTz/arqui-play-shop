@@ -1,13 +1,14 @@
-package server.data;
+package playshoplib;
 
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 
-class Database {
-    private String databaseFile = "./database.server.txt";
+public class Database {
+    private String databaseFile;
 
-    Database() {
+    public Database(String databaseFile) {
+        this.databaseFile = databaseFile;
         try {
             File file = new File(databaseFile);
             if (!file.exists()) new FileOutputStream(file, false);
@@ -16,7 +17,7 @@ class Database {
         }
     }
 
-    String read() {
+    public String read() {
         String response = "{}";
         try {
             File file = new File(databaseFile);
@@ -29,7 +30,7 @@ class Database {
         return response;
     }
 
-    void write(String input) {
+    public void write(String input) {
         try {
             FileOutputStream file = new FileOutputStream(databaseFile);
             Writer writer = new BufferedWriter(new OutputStreamWriter(file, StandardCharsets.UTF_8));

@@ -1,7 +1,7 @@
 package manager.screen;
 
 import manager.data.DataManager;
-import manager.data.PhoneApp;
+import manager.data.ManagerPhoneApp;
 
 import java.awt.BorderLayout;
 import java.awt.Button;
@@ -36,7 +36,7 @@ public class HomeScreen implements ScreenContainer {
         searchPanel.add(searchButton, BorderLayout.WEST);
         panel.add(searchPanel);
 
-        for (PhoneApp app : dataManager.getApps()) {
+        for (ManagerPhoneApp app : dataManager.getApps()) {
             panel.add(getAppButton(app));
         }
         return panel;
@@ -64,36 +64,36 @@ public class HomeScreen implements ScreenContainer {
         return jMenuBar;
     }
 
-    private Panel getAppButton(PhoneApp phoneApp) {
+    private Panel getAppButton(ManagerPhoneApp managerPhoneApp) {
         Panel panel = new Panel(new BorderLayout());
         panel.setBackground(Color.lightGray);
 
         Panel bodyPanel = new Panel(new BorderLayout());
         Panel descriptionPanel = new Panel(new BorderLayout());
-        Label appName = new Label(phoneApp.getName());
-        Label appState = new Label(phoneApp.getState());
+        Label appName = new Label(managerPhoneApp.getName());
+        Label appState = new Label(managerPhoneApp.getState());
         descriptionPanel.add(appName, BorderLayout.CENTER);
         descriptionPanel.add(appState, BorderLayout.EAST);
 
         Panel versionPanel = new Panel(new BorderLayout());
-        TextField textField = new TextField(phoneApp.getVersion());
+        TextField textField = new TextField(managerPhoneApp.getVersion());
         versionPanel.add(new Label("Version:"), BorderLayout.WEST);
         versionPanel.add(textField, BorderLayout.CENTER);
         bodyPanel.add(versionPanel, BorderLayout.SOUTH);
         bodyPanel.add(descriptionPanel, BorderLayout.NORTH);
 
         panel.add(bodyPanel, BorderLayout.CENTER);
-        if (phoneApp.isActive()) {
+        if (managerPhoneApp.isActive()) {
             Panel buttonsPanel = new Panel(new BorderLayout());
             Button sendButton = new Button("Upgrade version");
             sendButton.addActionListener(e -> {
-                phoneApp.setVersion(textField.getText());
-                dataManager.upgradeVersion(phoneApp);
+                managerPhoneApp.setVersion(textField.getText());
+                dataManager.upgradeVersion(managerPhoneApp);
             });
 
             Button DeactivateButton = new Button("Deactivate");
             DeactivateButton.addActionListener(e ->
-                    dataManager.deactivateApp(phoneApp)
+                    dataManager.deactivateApp(managerPhoneApp)
             );
             buttonsPanel.add(DeactivateButton, BorderLayout.NORTH);
             buttonsPanel.add(sendButton, BorderLayout.SOUTH);
