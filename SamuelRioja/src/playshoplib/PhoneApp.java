@@ -2,10 +2,10 @@ package playshoplib;
 
 public class PhoneApp {
     private String name;
-    private String version;
-    private String state;
+    private Double version;
+    private boolean state;
 
-    public PhoneApp(String name, String version, String state) {
+    public PhoneApp(String name, Double version, boolean state) {
         this.name = name;
         this.version = version;
         this.state = state;
@@ -15,23 +15,12 @@ public class PhoneApp {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getVersion() {
+    public Double getVersion() {
         return version;
     }
 
-    public void setVersion(String version) {
-        this.version = version;
-    }
-
-    public String getState() {
+    public boolean getState() {
         return state;
     }
 
-    public void setState(String state) {
-        this.state = state;
-    }
 }

@@ -2,68 +2,67 @@ package server.data;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import playshoplib.Database;
+import playshoplib.FileUtil;
+import playshoplib.PhoneApp;
 
 import java.util.HashMap;
 import java.util.Map;
 
 
 public class DataManager {
-    private Database database = new Database("./database.server.txt");
-    private Map<String, ServerPhoneApp> apps;
+    private FileUtil fileUtil = new FileUtil("./database.server.txt");
+    private Map<String, PhoneApp> apps;
     private Gson gson = new Gson();
 
     public DataManager() {
-        apps = gson.fromJson(database.read(), new TypeToken<Map<String, ServerPhoneApp>>() {
+        apps = gson.fromJson(fileUtil.read(), new TypeToken<Map<String, PhoneApp>>() {
         }.getType());
     }
 
     private void saveCurrentState() {
-        database.write(gson.toJson(apps));
+        fileUtil.write(gson.toJson(apps));
     }
 
 
     String getAllApps() {
-        return gson.toJson(apps);
+        return gson.toJson(apps.values().toArray());
     }
 
-    String getAllActiveApps() {
-        Map<String, ServerPhoneApp> response = new HashMap<>();
-        for (ServerPhoneApp app : apps.values()) {
-            if (app.getState().equals("active")) response.put(app.getName(), app);
-        }
-        return gson.toJson(response);
+    String getApp(String appName) {
+        return gson.toJson(apps.get(appName));
     }
 
-    void addApp(String input) {
-        ServerPhoneApp newVersionApp = gson.fromJson(input, ServerPhoneApp.class);
-        if (apps.get(newVersionApp.getName()) == null && newVersionApp.isInitialVersion()) {
+
+    boolean addApp(String input) {
+        boolean response = false;
+        if (apps.get(input) == null) {
+            PhoneApp newVersionApp = new PhoneApp(input, 1.0, true);
             apps.put(newVersionApp.getName(), newVersionApp);
             saveCurrentState();
+            response = true;
         }
+        return response;
     }
 
-    void updateVersion(String input) {
-        ServerPhoneApp newVersionApp = gson.fromJson(input, ServerPhoneApp.class);
-        ServerPhoneApp toUpgrade = apps.get(newVersionApp.getName());
-        if (toUpgrade.isUpgradeable(newVersionApp)) {
-            apps.put(newVersionApp.getName(), newVersionApp);
-            saveCurrentState();
+    boolean updateApp(String input) {
+        boolean response = false;
+        String[] params = input.split("/");
+        UpdateApp updateApp = gson.fromJson(params[1], UpdateApp.class);
+        PhoneApp appToUpdate = apps.get(params[0]);
+        if (updateApp != null) {
+            PhoneApp phoneApp = updateApp.updateApp(appToUpdate);
+            if (phoneApp != null) {
+                apps.replace(phoneApp.getName(), phoneApp);
+                saveCurrentState();
+                response = true;
+            }
         }
-    }
-
-    void deactivateApp(String input) {
-        ServerPhoneApp serverPhoneApp = gson.fromJson(input, ServerPhoneApp.class);
-        ServerPhoneApp currentApp = apps.get(serverPhoneApp.getName());
-        if (currentApp != null) {
-            currentApp.deactivate();
-            saveCurrentState();
-        }
+        return response;
     }
 
     String searchApp(String input) {
-        Map<String, ServerPhoneApp> response = new HashMap<>();
-        for (ServerPhoneApp app : apps.values()) {
+        Map<String, PhoneApp> response = new HashMap<>();
+        for (PhoneApp app : apps.values()) {
             if (app.getName().toLowerCase().contains(input.toLowerCase()))
                 response.put(app.getName(), app);
         }

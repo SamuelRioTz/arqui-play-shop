@@ -5,21 +5,23 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import phoneapp.screen.ScreenContainer;
 import phoneapp.screen.ScreenManager;
-import playshoplib.Database;
+import playshoplib.FileUtil;
+import playshoplib.PhoneApp;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class DataManager {
     private ConnectionManager connectionManager;
     private PlayShopApp playShopApp = new PlayShopApp();
     private Gson gson = new Gson();
-    private Database database = new Database("./database.phone.txt");
+    private FileUtil fileUtil = new FileUtil("./database.phone.txt");
     private ScreenManager playShopPhoneApp;
     private Map<String, SimpleApp> apps;
 
     public DataManager() {
-        apps = gson.fromJson(database.read(), new TypeToken<Map<String, SimpleApp>>() {
+        apps = gson.fromJson(fileUtil.read(), new TypeToken<Map<String, SimpleApp>>() {
         }.getType());
     }
 
@@ -38,7 +40,7 @@ public class DataManager {
             if (app.isInstalled())
                 toSave.put(app.getName(), app);
         }
-        database.write(gson.toJson(toSave));
+        fileUtil.write(gson.toJson(toSave));
     }
 
     public void installApp(SimpleApp app) {
@@ -48,20 +50,26 @@ public class DataManager {
     }
 
     public void unInstallApp(SimpleApp app) {
-        app.install(null);
+        app.install(0);
         saveCurrentState();
         refresh();
     }
 
     void setApps(String input) {
-        Map<String, SimpleApp> refreshApps = gson.fromJson(input, new TypeToken<Map<String, SimpleApp>>() {
+        List<SimpleApp> inputApps = gson.fromJson(input, new TypeToken<List<SimpleApp>>() {
         }.getType());
+        Map<String, SimpleApp> refreshApps = new HashMap<>();
+        for (SimpleApp app : inputApps) {
+            if (app.getState())
+                refreshApps.put(app.getName(), app);
+        }
         for (SimpleApp app : apps.values()) {
             SimpleApp currentInstalled = refreshApps.get(app.getName());
             if (currentInstalled == null) {
                 if (app.isInstalled()) {
-                    app.setVersion(app.getInstalledVersion());
-                    refreshApps.put(app.getName(), app);
+                    SimpleApp simpleApp = new SimpleApp(app.getName(), app.getVersion(), app.getState());
+                    simpleApp.install(simpleApp.getVersion());
+                    refreshApps.put(app.getName(), simpleApp);
                 }
             } else {
                 if (app.isInstalled()) {

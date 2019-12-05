@@ -10,7 +10,7 @@ import java.net.Socket;
 class PlayShopServer {
 
     private DataManager dataManager = new DataManager();
-    private int port = 5000;
+    private int port = 50000;
 
     PlayShopServer() {
         new Thread(() -> {

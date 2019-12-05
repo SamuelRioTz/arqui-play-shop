@@ -27,7 +27,7 @@ public class ConnectionManager {
         }
     }
 
-    private void request(String data) {
+    private void sendToClient(String data) {
         try {
             dataOutputStream.writeUTF(data);
         } catch (IOException e) {
@@ -37,55 +37,41 @@ public class ConnectionManager {
 
     private void messageParser(String input) {
         log(input);
-        String[] message = input.split("->");
-        switch (message[0]) {
-            case "getAllApps":
-                getAllApps();
-                break;
-            case "getAllActiveApps":
-                getAllActiveApps();
-                break;
-            case "addApp":
-                addApp(message[1]);
-                break;
-            case "upgradeVersion":
-                upgradeVersion(message[1]);
-                break;
-            case "deactivateApp":
-                deactivateApp(message[1]);
-                break;
-            case "searchApp":
-                searchApp(message[1]);
-                break;
+        if (input.contains("GET:apps")) {
+            getAllApps();
+        } else if (input.contains("GET:apps/")) {
+            getApp(input.replace("GET:apps/", ""));
+        } else if (input.contains("POST:apps/")) {
+            addApp(input.replace("POST:apps/", ""));
+        } else if (input.contains("PUT:apps/")) {
+            updateApp(input.replace("PUT:apps/", ""));
         }
     }
 
     private void getAllApps() {
-        request("getAllApps->" + dataManager.getAllApps());
+        sendToClient(dataManager.getAllApps());
     }
 
-    private void getAllActiveApps() {
-        request("getAllActiveApps->" + dataManager.getAllActiveApps());
+    private void getApp(String appName) {
+        sendToClient(dataManager.getApp(appName));
     }
 
     private void addApp(String input) {
-        dataManager.addApp(input);
-        getAllApps();
+        if (dataManager.addApp(input)) {
+            sendToClient("200");
+        } else {
+            sendToClient("204");
+        }
     }
 
-    private void upgradeVersion(String input) {
-        dataManager.updateVersion(input);
-        getAllApps();
+    private void updateApp(String input) {
+        if (dataManager.updateApp(input)) {
+            sendToClient("200");
+        } else {
+            sendToClient("404");
+        }
     }
 
-    private void deactivateApp(String input) {
-        dataManager.deactivateApp(input);
-        getAllApps();
-    }
-
-    private void searchApp(String input) {
-        request("getAllApps->" + dataManager.searchApp(input));
-    }
 
     private void log(String text) {
         System.out.println(text);

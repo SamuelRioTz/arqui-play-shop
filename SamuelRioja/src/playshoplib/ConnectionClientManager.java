@@ -8,13 +8,14 @@ import java.net.Socket;
 
 public abstract class ConnectionClientManager {
     private DataOutputStream dataOutputStream;
-    private String host ;
-    private int port ;
+    private String host;
+    private int port;
 
+    private ResponseListener responseListener;
 
-    public ConnectionClientManager(String host,int port) {
-        this.host=host;
-        this.port=port;
+    public ConnectionClientManager(String host, int port) {
+        this.host = host;
+        this.port = port;
         startConnection();
     }
 
@@ -30,7 +31,7 @@ public abstract class ConnectionClientManager {
                 try {
                     while (!message.equals("exit")) {
                         message = dataInputStream.readUTF();
-                        messageParser(message);
+                        onReceiveResponse(message);
                     }
                 } catch (IOException e) {
                     System.out.println("Server disconnected");
@@ -43,8 +44,16 @@ public abstract class ConnectionClientManager {
         }).start();
     }
 
-    public void request(String data) {
+    private void onReceiveResponse(String input) {
+        if (responseListener != null) {
+            responseListener.onResponse(input);
+            responseListener = null;
+        }
+    }
+
+    public void request(String data, ResponseListener responseListener) {
         try {
+            this.responseListener = responseListener;
             dataOutputStream.writeUTF(data);
         } catch (IOException e) {
 //            e.printStackTrace(); ignored
@@ -53,5 +62,4 @@ public abstract class ConnectionClientManager {
 
     abstract public void onConnection();
 
-    abstract public void messageParser(String input);
 }

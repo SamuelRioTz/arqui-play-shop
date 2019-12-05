@@ -1,1 +1,0 @@
-{"Facebook":{"name":"Facebook","version":"1.5","state":"active"},"Youtube":{"name":"Youtube","version":"1.1","state":"active"},"Whatsapp":{"name":"Whatsapp","version":"1.0","state":"active"}}

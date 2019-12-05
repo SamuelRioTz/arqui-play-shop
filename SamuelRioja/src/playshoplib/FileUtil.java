@@ -4,10 +4,10 @@ package playshoplib;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 
-public class Database {
+public class FileUtil {
     private String databaseFile;
 
-    public Database(String databaseFile) {
+    public FileUtil(String databaseFile) {
         this.databaseFile = databaseFile;
         try {
             File file = new File(databaseFile);

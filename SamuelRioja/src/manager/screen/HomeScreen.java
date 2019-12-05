@@ -1,7 +1,7 @@
 package manager.screen;
 
 import manager.data.DataManager;
-import manager.data.ManagerPhoneApp;
+import playshoplib.PhoneApp;
 
 import java.awt.BorderLayout;
 import java.awt.Button;
@@ -36,7 +36,7 @@ public class HomeScreen implements ScreenContainer {
         searchPanel.add(searchButton, BorderLayout.WEST);
         panel.add(searchPanel);
 
-        for (ManagerPhoneApp app : dataManager.getApps()) {
+        for (PhoneApp app : dataManager.getApps()) {
             panel.add(getAppButton(app));
         }
         return panel;
@@ -54,6 +54,9 @@ public class HomeScreen implements ScreenContainer {
         JMenuItem quitMenuItem = new JMenuItem("Exit");
         quitMenuItem.addActionListener(e -> dataManager.back());
         fileMenu.add(quitMenuItem);
+        JMenuItem refreshMenuItem = new JMenuItem("Refresh");
+        refreshMenuItem.addActionListener(e -> dataManager.downloadApps());
+        fileMenu.add(refreshMenuItem);
         JMenuItem addMenuItem = new JMenuItem("Add");
         addMenuItem.addActionListener(e -> {
             String name = JOptionPane.showInputDialog("Add new PhoneApp");
@@ -64,32 +67,31 @@ public class HomeScreen implements ScreenContainer {
         return jMenuBar;
     }
 
-    private Panel getAppButton(ManagerPhoneApp managerPhoneApp) {
+    private Panel getAppButton(PhoneApp managerPhoneApp) {
         Panel panel = new Panel(new BorderLayout());
         panel.setBackground(Color.lightGray);
 
         Panel bodyPanel = new Panel(new BorderLayout());
         Panel descriptionPanel = new Panel(new BorderLayout());
         Label appName = new Label(managerPhoneApp.getName());
-        Label appState = new Label(managerPhoneApp.getState());
+        Label appState = new Label(managerPhoneApp.getState() ? "active" : "inactive");
         descriptionPanel.add(appName, BorderLayout.CENTER);
         descriptionPanel.add(appState, BorderLayout.EAST);
 
         Panel versionPanel = new Panel(new BorderLayout());
-        TextField textField = new TextField(managerPhoneApp.getVersion());
+        TextField textField = new TextField(managerPhoneApp.getVersion().toString());
         versionPanel.add(new Label("Version:"), BorderLayout.WEST);
         versionPanel.add(textField, BorderLayout.CENTER);
         bodyPanel.add(versionPanel, BorderLayout.SOUTH);
         bodyPanel.add(descriptionPanel, BorderLayout.NORTH);
 
         panel.add(bodyPanel, BorderLayout.CENTER);
-        if (managerPhoneApp.isActive()) {
+        if (managerPhoneApp.getState()) {
             Panel buttonsPanel = new Panel(new BorderLayout());
             Button sendButton = new Button("Upgrade version");
-            sendButton.addActionListener(e -> {
-                managerPhoneApp.setVersion(textField.getText());
-                dataManager.upgradeVersion(managerPhoneApp);
-            });
+            sendButton.addActionListener(e ->
+                    dataManager.upgradeVersion(managerPhoneApp, Double.parseDouble(textField.getText()))
+            );
 
             Button DeactivateButton = new Button("Deactivate");
             DeactivateButton.addActionListener(e ->

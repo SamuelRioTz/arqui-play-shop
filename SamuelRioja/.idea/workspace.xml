@@ -2,22 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="71220e1d-9660-437b-ba09-9d4d5196194b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/playshoplib/ConnectionClientManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/playshoplib/PhoneApp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/manager/data/UpdateAppRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/playshoplib/ResponseListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/server/data/UpdateApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database.phone.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database.server.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/manager/data/ConnectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/data/ConnectionManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/manager/data/DataManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/data/DataManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manager/data/PhoneApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/data/ManagerPhoneApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/manager/data/ManagerPhoneApp.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/manager/screen/HomeScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/screen/HomeScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/phoneapp/data/ConnectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/phoneapp/data/ConnectionManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/phoneapp/data/DataManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/phoneapp/data/DataManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/phoneapp/data/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/playshoplib/Database.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/phoneapp/data/SimpleApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/phoneapp/data/SimpleApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/playshoplib/ConnectionClientManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/playshoplib/ConnectionClientManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/playshoplib/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/playshoplib/FileUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/playshoplib/PhoneApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/playshoplib/PhoneApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/PlayShopServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/PlayShopServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/data/ConnectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/data/ConnectionManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/data/DataManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/data/DataManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/data/Database.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/data/PhoneApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/data/ServerPhoneApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/data/ServerPhoneApp.java" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -28,6 +32,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -111,9 +116,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.PhoneApp" />
         <item itemvalue="Application.Manager" />
         <item itemvalue="Application.Server" />
-        <item itemvalue="Application.PhoneApp" />
       </list>
     </recent_temporary>
   </component>

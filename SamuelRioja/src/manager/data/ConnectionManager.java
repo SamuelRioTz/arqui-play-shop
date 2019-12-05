@@ -6,7 +6,7 @@ public class ConnectionManager extends ConnectionClientManager {
     private DataManager dataManager;
 
     public ConnectionManager(DataManager dataManager) {
-        super("localhost", 5000);
+        super("localhost", 50000);
         this.dataManager = dataManager;
     }
 
@@ -15,31 +15,18 @@ public class ConnectionManager extends ConnectionClientManager {
         dataManager.setConnectionManager(this);
     }
 
-    @Override
-    public void messageParser(String input) {
-        String[] message = input.split("->");
-        if ("getAllApps".equals(message[0])) {
-            dataManager.setApps(message[1]);
-        }
-    }
-
     void getAllApps() {
-        request("getAllApps");
+        request("GET:apps",input -> dataManager.setApps(input));
     }
 
-    void addApp(String input) {
-        request("addApp->" + input);
+    void addApp(String appName) {
+        String sendString = "POST:apps/" + appName;
+        request(sendString,input -> System.out.println(sendString + " -> " + input));
     }
 
-    void upgradeVersion(String input) {
-        request("upgradeVersion->" + input);
+    void updateApp(String updateAppString) {
+        String sendString = "PUT:apps/" + updateAppString;
+        request(sendString,input -> System.out.println(sendString + " -> " + input));
     }
 
-    void deactivateApp(String input) {
-        request("deactivateApp->" + input);
-    }
-
-    void searchApp(String text) {
-        request("searchApp->" + text);
-    }
 }

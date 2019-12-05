@@ -3,26 +3,25 @@ package phoneapp.data;
 import playshoplib.PhoneApp;
 
 public class SimpleApp extends PhoneApp {
-    private String installed;
+    private double installed;
 
-    public SimpleApp(String name, String version, String installed) {
-        super(name,version,null);
-        this.installed = installed;
+    public SimpleApp(String name, Double version, boolean state) {
+        super(name, version, state);
     }
 
-    public String getInstalledVersion() {
+    public double getInstalledVersion() {
         return installed;
     }
 
-    void install(String versionToInstall) {
+    void install(double versionToInstall) {
         installed = versionToInstall;
     }
 
     public boolean isInstalled() {
-        return installed != null;
+        return installed != 0;
     }
 
     public boolean isUpgradeable() {
-        return !installed.equals(super.getVersion());
+        return installed != super.getVersion();
     }
 }
