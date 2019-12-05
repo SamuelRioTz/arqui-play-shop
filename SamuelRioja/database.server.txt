@@ -1,0 +1,1 @@
+{"Facebook":{"name":"Facebook","version":1.0,"state":true},"YouTube":{"name":"YouTube","version":2.0,"state":true},"Whatsapp":{"name":"Whatsapp","version":1.0,"state":true}}

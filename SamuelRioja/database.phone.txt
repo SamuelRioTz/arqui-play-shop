@@ -1,0 +1,1 @@
+{"Facebook":{"installed":1.0,"name":"Facebook","version":1.0,"state":true},"YouTube":{"installed":1.0,"name":"YouTube","version":1.0,"state":true}}
