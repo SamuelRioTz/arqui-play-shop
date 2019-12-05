@@ -1,31 +1,24 @@
 package phoneapp.screen;
 
-import java.awt.BorderLayout;
-import java.awt.Button;
-import java.awt.Color;
-import java.awt.GridLayout;
-import java.awt.Panel;
-
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-
-import phoneapp.data.DataManager;
+import phoneapp.PlayShopPhoneApp;
 import phoneapp.data.SimpleApp;
 
-public class HomeScreen implements ScreenContainer {
-    private DataManager dataManager;
+import javax.swing.*;
+import java.awt.*;
 
-    HomeScreen(DataManager dataManager) {
-        this.dataManager = dataManager;
+public class HomeScreen implements ScreenContainer {
+    private PlayShopPhoneApp playShopPhoneApp;
+
+    HomeScreen(PlayShopPhoneApp playShopPhoneApp) {
+        this.playShopPhoneApp = playShopPhoneApp;
     }
 
     @Override
     public Panel getBody(Panel panel) {
         panel.setBackground(Color.white);
         panel.setLayout(new GridLayout(10, 1));
-        panel.add(dataManager.getPlayShopApp().getAppButton(dataManager));
-        for (SimpleApp app : dataManager.getApps().values()) {
+        panel.add(playShopPhoneApp.getPlayShopApp().getAppButton(playShopPhoneApp));
+        for (SimpleApp app : playShopPhoneApp.getApps().values()) {
             if (app.isInstalled())
                 panel.add(getAppButton(app));
         }
@@ -42,7 +35,7 @@ public class HomeScreen implements ScreenContainer {
         JMenuBar jMenuBar = new JMenuBar();
         JMenu fileMenu = new JMenu("File");
         JMenuItem quitMenuItem = new JMenuItem("Quit");
-        quitMenuItem.addActionListener(e -> dataManager.back());
+        quitMenuItem.addActionListener(e -> playShopPhoneApp.back());
         fileMenu.add(quitMenuItem);
         jMenuBar.add(fileMenu);
         return jMenuBar;

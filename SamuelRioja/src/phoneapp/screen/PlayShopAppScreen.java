@@ -1,6 +1,6 @@
 package phoneapp.screen;
 
-import phoneapp.data.DataManager;
+import phoneapp.PlayShopPhoneApp;
 import phoneapp.data.SimpleApp;
 
 import javax.swing.*;
@@ -8,10 +8,10 @@ import java.awt.*;
 
 
 public class PlayShopAppScreen implements ScreenContainer {
-    private DataManager dataManager;
+    private PlayShopPhoneApp playShopPhoneApp;
 
-    public PlayShopAppScreen(DataManager dataManager) {
-        this.dataManager = dataManager;
+    public PlayShopAppScreen(PlayShopPhoneApp playShopPhoneApp) {
+        this.playShopPhoneApp = playShopPhoneApp;
     }
 
     private Panel getAppPanel(SimpleApp phoneApp) {
@@ -23,18 +23,18 @@ public class PlayShopAppScreen implements ScreenContainer {
         button.setLabel(phoneApp.isInstalled() ? "Desinstalar" : "Instalar");
         button.addActionListener(e -> {
             if (!phoneApp.isInstalled()) {
-                dataManager.installApp(phoneApp);
+                playShopPhoneApp.installApp(phoneApp);
                 button.setLabel("Desinstalar");
             } else {
-                dataManager.unInstallApp(phoneApp);
+                playShopPhoneApp.unInstallApp(phoneApp);
                 button.setLabel("Instalar");
             }
-            dataManager.refresh();
+            playShopPhoneApp.refresh();
         });
         if (phoneApp.isInstalled() && phoneApp.isUpgradeable()) {
             Button updateButton = new Button("Actualizar");
             updateButton.addActionListener(e ->
-                    dataManager.installApp(phoneApp)
+                    playShopPhoneApp.installApp(phoneApp)
             );
             panel.add(updateButton, BorderLayout.WEST);
         }
@@ -47,7 +47,7 @@ public class PlayShopAppScreen implements ScreenContainer {
     public Panel getBody(Panel panel) {
         panel.setLayout(new BorderLayout());
         panel.setLayout(new GridLayout(10, 1));
-        for (SimpleApp app : dataManager.getApps().values()) {
+        for (SimpleApp app : playShopPhoneApp.getApps().values()) {
 //            if (!(app instanceof PlayShopApp))
             panel.add(getAppPanel(app));
         }
@@ -64,7 +64,7 @@ public class PlayShopAppScreen implements ScreenContainer {
         JMenuBar jMenuBar = new JMenuBar();
         JMenu fileMenu = new JMenu("File");
         JMenuItem quitMenuItem = new JMenuItem("Quit");
-        quitMenuItem.addActionListener(e -> dataManager.close());
+        quitMenuItem.addActionListener(e -> playShopPhoneApp.close());
         fileMenu.add(quitMenuItem);
         jMenuBar.add(fileMenu);
         return jMenuBar;

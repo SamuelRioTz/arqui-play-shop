@@ -1,32 +1,33 @@
 package manager.data;
 
+import manager.PlayShopManager;
 import playshoplib.ConnectionClientManager;
 
 import javax.swing.*;
 
 public class ConnectionManager extends ConnectionClientManager {
-    private DataManager dataManager;
+    private PlayShopManager playShopManager;
 
-    public ConnectionManager(DataManager dataManager) {
+    public ConnectionManager(PlayShopManager playShopManager) {
         super("localhost", 50000);
-        this.dataManager = dataManager;
+        this.playShopManager = playShopManager;
     }
 
     @Override
     public void onConnection() {
-        dataManager.setConnectionManager(this);
+        playShopManager.setConnectionManager(this);
     }
 
-    void getAllApps() {
-        request("GET:apps", input -> dataManager.setApps(input));
+    public void getAllApps() {
+        request("GET:apps", input -> playShopManager.setApps(input));
     }
 
-    void addApp(String appName) {
+    public void addApp(String appName) {
         String sendString = "POST:apps/" + appName;
         request(sendString, input -> showInfo(sendString + " -> " + input));
     }
 
-    void updateApp(String updateAppString) {
+    public void updateApp(String updateAppString) {
         String sendString = "PUT:apps/" + updateAppString;
         request(sendString, input -> showInfo(sendString + " -> " + input));
     }

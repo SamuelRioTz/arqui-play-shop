@@ -1,24 +1,17 @@
 package manager.screen;
 
-import manager.data.DataManager;
+import manager.PlayShopManager;
 import playshoplib.PhoneApp;
 
-import java.awt.BorderLayout;
-import java.awt.Button;
-import java.awt.Color;
-import java.awt.GridLayout;
-import java.awt.Label;
-import java.awt.Panel;
-import java.awt.TextField;
-
 import javax.swing.*;
+import java.awt.*;
 
 
 public class HomeScreen implements ScreenContainer {
-    private DataManager dataManager;
+    private PlayShopManager playShopManager;
 
-    HomeScreen(DataManager dataManager) {
-        this.dataManager = dataManager;
+    HomeScreen(PlayShopManager playShopManager) {
+        this.playShopManager = playShopManager;
     }
 
     @Override
@@ -30,13 +23,13 @@ public class HomeScreen implements ScreenContainer {
         TextField textField = new TextField("");
         Button searchButton = new Button("Buscar");
         searchButton.addActionListener(e ->
-                dataManager.searchApp(textField.getText())
+                playShopManager.searchApp(textField.getText())
         );
         searchPanel.add(textField, BorderLayout.CENTER);
         searchPanel.add(searchButton, BorderLayout.WEST);
         panel.add(searchPanel);
 
-        for (PhoneApp app : dataManager.getApps()) {
+        for (PhoneApp app : playShopManager.getApps()) {
             panel.add(getAppButton(app));
         }
         return panel;
@@ -52,15 +45,15 @@ public class HomeScreen implements ScreenContainer {
         JMenuBar jMenuBar = new JMenuBar();
         JMenu fileMenu = new JMenu("File");
         JMenuItem quitMenuItem = new JMenuItem("Exit");
-        quitMenuItem.addActionListener(e -> dataManager.back());
+        quitMenuItem.addActionListener(e -> playShopManager.back());
         fileMenu.add(quitMenuItem);
         JMenuItem refreshMenuItem = new JMenuItem("Refresh");
-        refreshMenuItem.addActionListener(e -> dataManager.downloadApps());
+        refreshMenuItem.addActionListener(e -> playShopManager.downloadApps());
         fileMenu.add(refreshMenuItem);
         JMenuItem addMenuItem = new JMenuItem("Add");
         addMenuItem.addActionListener(e -> {
             String name = JOptionPane.showInputDialog("Add new PhoneApp");
-            if (name != null) dataManager.addApp(name);
+            if (name != null) playShopManager.addApp(name);
         });
         fileMenu.add(addMenuItem);
         jMenuBar.add(fileMenu);
@@ -90,12 +83,12 @@ public class HomeScreen implements ScreenContainer {
             Panel buttonsPanel = new Panel(new BorderLayout());
             Button sendButton = new Button("Upgrade version");
             sendButton.addActionListener(e ->
-                    dataManager.upgradeVersion(managerPhoneApp, Double.parseDouble(textField.getText()))
+                    playShopManager.upgradeVersion(managerPhoneApp, Double.parseDouble(textField.getText()))
             );
 
             Button DeactivateButton = new Button("Deactivate");
             DeactivateButton.addActionListener(e ->
-                    dataManager.deactivateApp(managerPhoneApp)
+                    playShopManager.deactivateApp(managerPhoneApp)
             );
             buttonsPanel.add(DeactivateButton, BorderLayout.NORTH);
             buttonsPanel.add(sendButton, BorderLayout.SOUTH);

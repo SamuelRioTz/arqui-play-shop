@@ -1,13 +1,11 @@
 package manager.screen;
 
 
-import manager.data.DataManager;
+import manager.PlayShopManager;
 
-import java.awt.Dimension;
-import java.awt.Panel;
+import javax.swing.*;
+import java.awt.*;
 import java.util.Stack;
-
-import javax.swing.JFrame;
 
 
 public class ScreenManager {
@@ -16,9 +14,9 @@ public class ScreenManager {
 
     private Stack<ScreenContainer> history = new Stack<>();
 
-    public ScreenManager(DataManager dataManager) {
+    public ScreenManager(PlayShopManager playShopManager) {
         window.setResizable(false);
-        setScreen(new HomeScreen(dataManager));
+        setScreen(new HomeScreen(playShopManager));
         window.setVisible(true);
     }
 

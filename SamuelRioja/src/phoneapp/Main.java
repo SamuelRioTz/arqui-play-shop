@@ -1,6 +1,6 @@
 package phoneapp;
 
-public class PhoneApp {
+public class Main {
     public static void main(String[] args) {
         new PlayShopPhoneApp();
     }

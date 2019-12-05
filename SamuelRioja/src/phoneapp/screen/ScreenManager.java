@@ -1,6 +1,6 @@
 package phoneapp.screen;
 
-import phoneapp.data.DataManager;
+import phoneapp.PlayShopPhoneApp;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,11 +10,11 @@ public class ScreenManager {
     private JFrame window = new JFrame();
     private Stack<ScreenContainer> history = new Stack<>();
 
-    public ScreenManager(DataManager dataManager) {
+    public ScreenManager(PlayShopPhoneApp playShopPhoneApp) {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
         window.setLocation(500, 0);
-        setScreen(new HomeScreen(dataManager));
+        setScreen(new HomeScreen(playShopPhoneApp));
         window.setVisible(true);
     }
 

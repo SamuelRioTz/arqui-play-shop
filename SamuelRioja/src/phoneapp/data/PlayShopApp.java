@@ -1,5 +1,6 @@
 package phoneapp.data;
 
+import phoneapp.PlayShopPhoneApp;
 import phoneapp.screen.PlayShopAppScreen;
 
 import java.awt.*;
@@ -10,12 +11,12 @@ public class PlayShopApp {
         return "Play Store";
     }
 
-    public Panel getAppButton(DataManager dataManager) {
+    public Panel getAppButton(PlayShopPhoneApp playShopPhoneApp) {
         Panel panel = new Panel(new BorderLayout());
         panel.setBackground(Color.lightGray);
-        Button button = new Button(getName() + " ( 1.0 )");
+        Button button = new Button(getName());
         button.addActionListener(e ->
-                dataManager.setScreen(new PlayShopAppScreen(dataManager))
+                playShopPhoneApp.setScreen(new PlayShopAppScreen(playShopPhoneApp))
         );
         panel.add(button, BorderLayout.CENTER);
         return panel;

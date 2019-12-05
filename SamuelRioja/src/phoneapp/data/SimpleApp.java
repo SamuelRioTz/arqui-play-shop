@@ -13,7 +13,7 @@ public class SimpleApp extends PhoneApp {
         return installed;
     }
 
-    void install(double versionToInstall) {
+    public void install(double versionToInstall) {
         installed = versionToInstall;
     }
 

@@ -1,24 +1,25 @@
 package phoneapp.data;
 
+import phoneapp.PlayShopPhoneApp;
 import playshoplib.ConnectionClientManager;
 
 public class ConnectionManager extends ConnectionClientManager {
-    private DataManager dataManager;
+    private PlayShopPhoneApp playShopPhoneApp;
 
 
-    public ConnectionManager(DataManager dataManager) {
+    public ConnectionManager(PlayShopPhoneApp playShopPhoneApp) {
         super("localhost", 50000);
-        this.dataManager = dataManager;
+        this.playShopPhoneApp = playShopPhoneApp;
     }
 
 
     @Override
     public void onConnection() {
-        dataManager.setConnectionManager(this);
+        playShopPhoneApp.setConnectionManager(this);
     }
 
 
-    void getAllActiveApps() {
-        request("GET:apps", input -> dataManager.setApps(input));
+    public void getAllActiveApps() {
+        request("GET:apps", input -> playShopPhoneApp.setApps(input));
     }
 }

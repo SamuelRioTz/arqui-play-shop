@@ -3,7 +3,20 @@
   <component name="ChangeListManager">
     <list default="true" id="71220e1d-9660-437b-ba09-9d4d5196194b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/manager/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/manager/PlayShopManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/PlayShopManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/manager/data/ConnectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/data/ConnectionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/manager/data/DataManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/manager/screen/HomeScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/screen/HomeScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/manager/screen/ScreenManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/screen/ScreenManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/phoneapp/PlayShopPhoneApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/phoneapp/PlayShopPhoneApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/phoneapp/data/ConnectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/phoneapp/data/ConnectionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/phoneapp/data/DataManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/phoneapp/data/PlayShopApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/phoneapp/data/PlayShopApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/phoneapp/data/SimpleApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/phoneapp/data/SimpleApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/phoneapp/screen/HomeScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/phoneapp/screen/HomeScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/phoneapp/screen/PlayShopAppScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/phoneapp/screen/PlayShopAppScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/phoneapp/screen/ScreenManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/phoneapp/screen/ScreenManager.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -51,9 +64,9 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.PhoneApp">
-    <configuration name="Manager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="manager.Manager" />
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="manager.Main" />
       <module name="SamueRioja" />
       <extension name="coverage">
         <pattern>
@@ -65,8 +78,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PhoneApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="phoneapp.PhoneApp" />
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="phoneapp.Main" />
       <module name="SamueRioja" />
       <extension name="coverage">
         <pattern>
@@ -78,8 +91,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="server.Server" />
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="server.Main" />
       <module name="SamueRioja" />
       <extension name="coverage">
         <pattern>
@@ -92,15 +105,15 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Manager" />
-      <item itemvalue="Application.PhoneApp" />
-      <item itemvalue="Application.Server" />
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.Main" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.PhoneApp" />
-        <item itemvalue="Application.Manager" />
-        <item itemvalue="Application.Server" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -150,7 +163,28 @@
       <option name="project" value="LOCAL" />
       <updated>1575522599686</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="change error code">
+      <created>1575523072282</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1575523072282</updated>
+    </task>
+    <task id="LOCAL-00007" summary="change database">
+      <created>1575523274217</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1575523274217</updated>
+    </task>
+    <task id="LOCAL-00008" summary="change database">
+      <created>1575523294204</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1575523294204</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -171,6 +205,8 @@
     <MESSAGE value="fix error on disconnect" />
     <MESSAGE value="feature search" />
     <MESSAGE value="working with the new protocol" />
-    <option name="LAST_COMMIT_MESSAGE" value="working with the new protocol" />
+    <MESSAGE value="change error code" />
+    <MESSAGE value="change database" />
+    <option name="LAST_COMMIT_MESSAGE" value="change database" />
   </component>
 </project>
