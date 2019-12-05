@@ -2,6 +2,8 @@ package manager.data;
 
 import playshoplib.ConnectionClientManager;
 
+import javax.swing.*;
+
 public class ConnectionManager extends ConnectionClientManager {
     private DataManager dataManager;
 
@@ -16,17 +18,20 @@ public class ConnectionManager extends ConnectionClientManager {
     }
 
     void getAllApps() {
-        request("GET:apps",input -> dataManager.setApps(input));
+        request("GET:apps", input -> dataManager.setApps(input));
     }
 
     void addApp(String appName) {
         String sendString = "POST:apps/" + appName;
-        request(sendString,input -> System.out.println(sendString + " -> " + input));
+        request(sendString, input -> showInfo(sendString + " -> " + input));
     }
 
     void updateApp(String updateAppString) {
         String sendString = "PUT:apps/" + updateAppString;
-        request(sendString,input -> System.out.println(sendString + " -> " + input));
+        request(sendString, input -> showInfo(sendString + " -> " + input));
     }
 
+    private void showInfo(String info) {
+        JOptionPane.showMessageDialog(new JPanel(), info, "Response", JOptionPane.INFORMATION_MESSAGE);
+    }
 }

@@ -2,26 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="71220e1d-9660-437b-ba09-9d4d5196194b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/manager/data/UpdateAppRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/playshoplib/ResponseListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/server/data/UpdateApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database.phone.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database.server.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/manager/data/ConnectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/data/ConnectionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manager/data/DataManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/data/DataManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manager/data/ManagerPhoneApp.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manager/screen/HomeScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/screen/HomeScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/phoneapp/data/ConnectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/phoneapp/data/ConnectionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/phoneapp/data/DataManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/phoneapp/data/DataManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/phoneapp/data/SimpleApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/phoneapp/data/SimpleApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/playshoplib/ConnectionClientManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/playshoplib/ConnectionClientManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/playshoplib/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/playshoplib/FileUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/playshoplib/PhoneApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/playshoplib/PhoneApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/PlayShopServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/PlayShopServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/data/ConnectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/data/ConnectionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/data/DataManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/data/DataManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/data/ServerPhoneApp.java" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -116,9 +98,9 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.PhoneApp" />
         <item itemvalue="Application.Manager" />
         <item itemvalue="Application.Server" />
+        <item itemvalue="Application.PhoneApp" />
       </list>
     </recent_temporary>
   </component>
@@ -161,7 +143,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575051036570</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="working with the new protocol">
+      <created>1575522599686</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1575522599686</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -181,6 +170,7 @@
     <MESSAGE value="last changes" />
     <MESSAGE value="fix error on disconnect" />
     <MESSAGE value="feature search" />
-    <option name="LAST_COMMIT_MESSAGE" value="feature search" />
+    <MESSAGE value="working with the new protocol" />
+    <option name="LAST_COMMIT_MESSAGE" value="working with the new protocol" />
   </component>
 </project>
